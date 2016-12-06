@@ -1,0 +1,21 @@
+{
+  "name": "InstaViz",
+  "description": "Generate graphs based on page selection",
+  "version": "0.32",
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*"
+  ],
+  "browser_action": {
+      "default_title": "Set this page's color.",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+  },
+  "background": { "scripts": ["background.js"] },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["valsnatch.js"]
+    }
+  ],
+  "manifest_version": 2
+}
