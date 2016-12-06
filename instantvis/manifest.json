@@ -1,7 +1,7 @@
 {
-  "name": "InstaViz",
+  "name": "Ciquette",
   "description": "Generate graphs based on page selection",
-  "version": "0.32",
+  "version": "0.33",
   "permissions": [
     "tabs", "http://*/*", "https://*/*"
   ],
