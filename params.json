@@ -1,0 +1,6 @@
+{
+  "name": "Ciquette",
+  "tagline": "A chrome extension for creating d3 visualizations from highlighted text!",
+  "body": "# Ciquette\r\nA chrome extension for creating D3 visualizations from highlighted text!\r\n\r\n![Example](http://g.recordit.co/uw9Mf9VhAq.gif)\r\n\r\nNow that annoying HTML table can be put to work to actually make sense of data.",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
