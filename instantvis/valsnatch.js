@@ -1,7 +1,6 @@
 if (window == top) {
     var t = '';
     var pool = chrome.runtime.connect({ name: "pool" })
-
     function gText(e) {
         t = (document.all) ? document.selection.createRange().text : document.getSelection().toString();
         m = t.trim().match(/[^\r\n]+/g).map(function(str){return str.split(/\t+/g)})
@@ -27,7 +26,6 @@ if (window == top) {
             console.table({label:label, load:load})
         }
     }
-
     document.onmouseup = gText;
     if (!document.all) document.captureEvents(Event.MOUSEUP);
 }
