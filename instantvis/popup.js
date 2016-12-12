@@ -53,6 +53,7 @@ function draw() {
             .transitionDuration(350)
             .stacked(true)
             .showControls(false)
+            .noData("...Nothing valid selected...")
             .width(750);
 
 
@@ -74,6 +75,7 @@ function draw() {
             // .showValues(false)
             //...instead, show the bar value right on top of each bar.
             .transitionDuration(350)
+            .noData("...Nothing valid selected...")
             .width(750);
             // .stacked(true);
 

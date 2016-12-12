@@ -14,7 +14,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["valsnatch.js"]
+      "js": ["jquery.min.js", "valsnatch.js"]
     }
   ],
   "manifest_version": 2
