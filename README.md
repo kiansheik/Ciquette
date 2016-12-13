@@ -5,9 +5,9 @@
 
 <p>Now that annoying HTML table can be put to work to actually make sense of data.</p>
 
-# How to use
+## How to use
 
-## The first column selected is the label and the last column selected is the data.
+### The first column selected is the label and the last column selected is the data.
 - This helps us get around selecting the entire table when trying to vertical select :(
 
 ![Demo](http://g.recordit.co/1g5wUcRpOU.gif)
