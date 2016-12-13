@@ -70,6 +70,7 @@ function draw() {
                 return d.label }) //Specify the data accessors.
             .y(function(d) {
                 return d.value })
+            .valueFormat(function(d) { return ""+d;})
            .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
             .tooltips(true) //Don't show tooltips
             // .showValues(false)
@@ -83,7 +84,6 @@ function draw() {
         d3.select('#chart1 svg')
             .datum(loadData(address))
             .call(chart);
-
         nv.utils.windowResize(chart.update);
         return chart;
     });
