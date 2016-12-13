@@ -58,7 +58,7 @@ strictDetect.map(function(tbl) {
     Object.keys(tbl).filter(function(e) {
         return e !== 'src'; }).map(function(e, i) {
         $('#' + id).append('<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-' + i + '-label">' +
-            '<input type="radio" id="option-' + i + '-label" class="mdl-radio__button" name="label" value="' + e + '" ' + (first ? 'checked' : "") + '>' +
+            '<input type="radio" id="'+id+'-option-' + i + '-label" class="mdl-radio__button" name="label" value="' + e + '" ' + (first ? 'checked' : "") + '>' +
             '<span class="mdl-radio__label">' + e + '</span></label>');
         first = false;
     });
@@ -66,7 +66,7 @@ strictDetect.map(function(tbl) {
     Object.keys(tbl).filter(function(e) {
         return e !== 'src'; }).map(function(e, i) {
         $('#' + id).append('<label style="float:right;" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-' + i + '-data">' +
-            '<input type="radio" id="option-' + i + '-data" class="mdl-radio__button" name="data" value="' + e + '" ' + (first ? 'checked' : "") + '>' +
+            '<input type="radio" id="'+id+'-option-' + i + '-data" class="mdl-radio__button" name="data" value="' + e + '" ' + (first ? 'checked' : "") + '>' +
             '<span class="mdl-radio__label">' + e + '</span></label>');
         first = false;
     });
