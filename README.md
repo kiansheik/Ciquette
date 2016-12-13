@@ -16,5 +16,31 @@
 # **NEW (12/17/2016)**
 - Auto-graph insertion for certain `<table>` types *in-page, under table* while browsing
 - Select which columns to display as data and labels
+Test if it works on the table below
+<table border="1" cellpadding="3" cellspacing="0" summary="The cigarette smoking rates of adults within the United States, organized by age.">
+<tbody><tr>
+<th scope="row">Age</th>
+<th scope="row">Prevalence</th>
+</tr>
 
+<tr>
+<td>18–24 years</td>
+<td>16.7%</td>
+</tr>
+
+<tr>
+<td>25–44 years</td>
+<td>20.0%</td>
+</tr>
+
+<tr>
+<td>45–64 years</td>
+<td>18.0%</td>
+</tr>
+
+<tr>
+<td>65 years and older</td>
+<td>&nbsp;&nbsp;8.5%</td>
+</tr>
+</tbody></table>
 ![New-GIF](http://g.recordit.co/CYGPN0zVi5.gif)
