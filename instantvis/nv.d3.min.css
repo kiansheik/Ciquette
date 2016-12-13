@@ -143,7 +143,7 @@
  */
 
 
-svg {
+svg.nv3 {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -157,11 +157,11 @@ svg {
 }
 
 
-svg text {
+svg.nv3 text {
   font: normal 12px Arial;
 }
 
-svg .title {
+svg.nv3 .title {
  font: bold 14px Arial;
 }
 

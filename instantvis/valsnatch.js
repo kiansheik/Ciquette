@@ -5,17 +5,19 @@ if (window == top) {
     function gText(e) {
         // console.log("arg", e)
         t = (document.all) ? document.selection.createRange().text : document.getSelection().toString();
-        if(t===""){return}
+        if (t === "") {
+            return }
         m = t.trim().match(/[^\r\n]+/g).map(function(str) {
-            return str.split(/\t+/g)
-        })
-        // console.log("bef", t)
-        // console.table(m)
-        if (m.length == 1) {
-            var tsplit = t.split(/\s+/g)
-            pool.postMessage({ load: tsplit, label: Array.apply(null, { length: tsplit.length }).map(Number.call, Number + 1) });
-            // console.table(t.split(/\s+/g));
-        } else if (m.length >= 2) {
+                return str.split(/\t+/g)
+            })
+            // console.log("bef", t)
+            // console.table(m)
+            // if (m.length == 1) {
+            //     var tsplit = t.split(/\s+/g)
+            //     pool.postMessage({ load: tsplit, label: Array.apply(null, { length: tsplit.length }).map(Number.call, Number + 1) });
+            //     // console.table(t.split(/\s+/g));
+            // } 
+        if (m.length >= 2) {
             var load = [],
                 label = [];
             var start = m[0].length;
@@ -28,7 +30,7 @@ if (window == top) {
             load.push(m[m.length - 1][end]);
 
             pool.postMessage({ type: "select", load: load, label: label })
-            // console.table({ type: "select", label: label, load: load })
+                // console.table({ type: "select", label: label, load: load })
         }
 
 
@@ -50,7 +52,26 @@ var strictDetect = toArray(elements).map(function(e) {
 
 strictDetect.map(function(tbl) {
     var id = randomString(6);
-    $(tbl.src).after('<div id="' + id + '"><svg perserveAspectRatio="xMinYMid" style="height: 200px;padding-bottom: 10px;"></svg></div>');
+    $(tbl.src).after('<div id="' + id + '"><svg class="nv3" perserveAspectRatio="xMinYMid" style="height: 200px;padding-bottom: 10px;"></svg></div>');
+    $('#' + id).append('<span><label style="display:inline-block;">Label</label><label style="float:right; display:inline-block;">Data </label></span><br>');
+    var first = true;
+    Object.keys(tbl).filter(function(e) {
+        return e !== 'src'; }).map(function(e, i) {
+        $('#' + id).append('<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-' + i + '-label">' +
+            '<input type="radio" id="option-' + i + '-label" class="mdl-radio__button" name="label" value="' + e + '" ' + (first ? 'checked' : "") + '>' +
+            '<span class="mdl-radio__label">' + e + '</span></label>');
+        first = false;
+    });
+    first = true;
+    Object.keys(tbl).filter(function(e) {
+        return e !== 'src'; }).map(function(e, i) {
+        $('#' + id).append('<label style="float:right;" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-' + i + '-data">' +
+            '<input type="radio" id="option-' + i + '-data" class="mdl-radio__button" name="data" value="' + e + '" ' + (first ? 'checked' : "") + '>' +
+            '<span class="mdl-radio__label">' + e + '</span></label>');
+        first = false;
+    });
+
+    //$('#' + id).append('');
     nv.addGraph(function() {
         var chart = nv.models.discreteBarChart()
             .x(function(d) {
@@ -67,10 +88,24 @@ strictDetect.map(function(tbl) {
             .noData("...Nothing valid selected...")
 
         // .stacked(true);
+        var keys = {}
+        $('#' + id + " label").click(function(e) {
+            if(e.currentTarget === e.toElement)return;
+            $('#' + id + ' input:checked').each(function() { 
+                keys[$(this).attr("name")] = $(this).attr("value");
 
+            });
+            if(keys.label&&keys.data){
+                console.log(keys);
+                d3.select("#" + id + ' svg')
+                    .datum(strictd3(tbl, chart, keys.label, keys.data))
+                    .transition()
+                    .call(chart);
+            }
+        })
 
         d3.select("#" + id + ' svg')
-            .datum(strictd3(tbl, chart, 1, 0))
+            .datum(strictd3(tbl, chart, 0, 1))
             .call(chart);
         nv.utils.windowResize(chart.update);
         return chart;
@@ -95,20 +130,26 @@ function isEven(arr) {
     return true;
 }
 
-function strictd3(tbl, chart, x, y) {
-    var keys = Object.keys(tbl).filter(function(e) {
-        return e !== "src" })
-    //alert(keys[x] + ", " + keys[y])
+function strictd3(tbl, chart, label, data) {
+    if(!isNaN(label)){
+        var keys = Object.keys(tbl).filter(function(e) {
+                return e !== "src"
+        });
+        label = keys[label];
+        data = keys[data];
+
+    }
+        //alert(keys[x] + ", " + keys[y])
     chart.xAxis
-        .axisLabel(keys[x]);
+        .axisLabel(label);
     chart.yAxis
-        .axisLabel(keys[y]);
+        .axisLabel(data);
     var values = [];
-    for (var i in tbl[keys[x]]) {
-        values.push({ label: tbl[keys[y]][i], value: numeral(tbl[keys[x]][i]) });
+    for (var i in tbl[label]) {
+        values.push({ label: tbl[label][i], value: numeral(tbl[data][i]) });
     }
     // console.log(values)
-    return [{ key: keys[x], values: values }];
+    return [{ key: label, values: values }];
 }
 
 function randomString(length) {
