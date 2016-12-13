@@ -14,7 +14,7 @@
 
 
 # **NEW (12/17/2016)**
-- Auto-graph insertion for certain `<table>` types.
+- Auto-graph insertion for certain `<table>` types *in-page, under table* while browsing
 - Select which columns to display as data and labels
 
 ![New-GIF](http://g.recordit.co/CYGPN0zVi5.gif)
